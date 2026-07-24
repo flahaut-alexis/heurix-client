@@ -7,7 +7,16 @@
  * fourni (marque, couleur, prix...), pas seulement `id`/`name`.
  */
 interface HeurixClientOptions {
-    /** Votre clé API Heurix (hx_...). */
+    /**
+     * Votre clé API Heurix.
+     *
+     * - `hx_...` — **clé serveur** : accès complet (indexation, merchandising,
+     *   facturation). À n'utiliser que côté serveur, jamais dans du code
+     *   exécuté par un navigateur.
+     * - `hxp_...` — **clé publique** : lecture seule (recherche, browse,
+     *   événements de conversion). La seule à pouvoir être exposée côté
+     *   navigateur sans risque.
+     */
     apiKey: string;
     /** Catalogue par défaut, utilisé si non précisé dans un appel individuel. */
     catalog?: string;
@@ -32,6 +41,10 @@ interface SearchHit {
     in_stock: boolean;
     matched: string[];
 }
+interface SuggestedCategory {
+    category: string;
+    products: number;
+}
 interface SearchResult {
     query: string;
     tokens: string[];
@@ -41,6 +54,8 @@ interface SearchResult {
     hits: SearchHit[];
     fallback: boolean;
     facets?: Record<string, Record<string, number>>;
+    /** Piste de catégorie Browse correspondant à la requête, si trouvée — une suggestion, ne modifie jamais `hits` ni son ordre. */
+    suggested_category?: SuggestedCategory;
 }
 interface SearchOptions {
     /** Remplace le catalogue par défaut pour cet appel précis. */
@@ -134,4 +149,4 @@ declare class HeurixClient {
     setSynonyms(groups: string[][], catalog?: string): Promise<SynonymsResult>;
 }
 
-export { type BrowseHit, type BrowseOptions, type BrowseResult, type BrowseSort, HeurixApiError, HeurixClient, type HeurixClientOptions, type IndexCatalogStats, type IndexOptions, type IndexResult, type Product, type SearchHit, type SearchOptions, type SearchResult, type SynonymsResult };
+export { type BrowseHit, type BrowseOptions, type BrowseResult, type BrowseSort, HeurixApiError, HeurixClient, type HeurixClientOptions, type IndexCatalogStats, type IndexOptions, type IndexResult, type Product, type SearchHit, type SearchOptions, type SearchResult, type SuggestedCategory, type SynonymsResult };

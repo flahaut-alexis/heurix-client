@@ -42,6 +42,22 @@ export class HeurixClient {
     if (!options.apiKey) {
       throw new Error("HeurixClient : 'apiKey' est requis.");
     }
+    // Chantier securite C1 : une cle serveur (hx_) utilisee dans un
+    // navigateur est lisible par tous les visiteurs et donne acces a
+    // l'indexation, au merchandising et au portail de facturation.
+    // Seule une cle publique (hxp_) a une portee limitee a la lecture.
+    if (
+      typeof window !== "undefined" &&
+      options.apiKey.startsWith("hx_") &&
+      !options.apiKey.startsWith("hxp_")
+    ) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        "[Heurix] Vous utilisez une clé SERVEUR (hx_) côté navigateur. " +
+          "Elle est lisible par vos visiteurs et donne accès à votre facturation. " +
+          "Générez une clé publique (hxp_) depuis votre console Heurix."
+      );
+    }
     this.apiKey = options.apiKey;
     this.defaultCatalog = options.catalog;
     this.baseUrl = (options.baseUrl ?? DEFAULT_BASE_URL).replace(/\/+$/, "");
@@ -153,6 +169,7 @@ export type {
   SearchResult,
   SearchHit,
   SearchOptions,
+  SuggestedCategory,
   BrowseResult,
   BrowseHit,
   BrowseOptions,

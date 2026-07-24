@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { HeurixClient, type SearchHit } from "@heurix/client";
+import { HeurixClient, type SearchHit } from "heurix-client";
 
 // À sortir de votre composant en pratique — une seule instance pour toute
 // l'application, pas une par rendu.

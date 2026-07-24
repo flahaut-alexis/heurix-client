@@ -8,7 +8,16 @@
  */
 
 export interface HeurixClientOptions {
-  /** Votre clé API Heurix (hx_...). */
+  /**
+   * Votre clé API Heurix.
+   *
+   * - `hx_...` — **clé serveur** : accès complet (indexation, merchandising,
+   *   facturation). À n'utiliser que côté serveur, jamais dans du code
+   *   exécuté par un navigateur.
+   * - `hxp_...` — **clé publique** : lecture seule (recherche, browse,
+   *   événements de conversion). La seule à pouvoir être exposée côté
+   *   navigateur sans risque.
+   */
   apiKey: string;
   /** Catalogue par défaut, utilisé si non précisé dans un appel individuel. */
   catalog?: string;
@@ -36,6 +45,11 @@ export interface SearchHit {
   matched: string[];
 }
 
+export interface SuggestedCategory {
+  category: string;
+  products: number;
+}
+
 export interface SearchResult {
   query: string;
   tokens: string[];
@@ -45,6 +59,8 @@ export interface SearchResult {
   hits: SearchHit[];
   fallback: boolean;
   facets?: Record<string, Record<string, number>>;
+  /** Piste de catégorie Browse correspondant à la requête, si trouvée — une suggestion, ne modifie jamais `hits` ni son ordre. */
+  suggested_category?: SuggestedCategory;
 }
 
 export interface SearchOptions {

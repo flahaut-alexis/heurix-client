@@ -1,17 +1,17 @@
-# @heurix-site/client
+# heurix-client
 
 Client officiel TypeScript/JavaScript pour l'API Heurix — recherche, Browse & Discovery, indexation, synonymes. Zéro dépendance runtime (utilise `fetch` natif), types TypeScript complets.
 
 ## Installation
 
 ```bash
-npm install @heurix-site/client
+npm install heurix-client
 ```
 
 ## Démarrage rapide
 
 ```ts
-import { HeurixClient } from "@heurix-site/client";
+import { HeurixClient } from "heurix-client";
 
 const client = new HeurixClient({
   apiKey: "hx_votre_cle_api",
@@ -81,7 +81,7 @@ Effet immédiat, aucune réindexation nécessaire.
 Toute erreur renvoyée par l'API (catalogue introuvable, quota dépassé, accès Browse non inclus dans le plan…) lève une `HeurixApiError`, avec `status` et `message` reflétant directement la réponse de l'API :
 
 ```ts
-import { HeurixClient, HeurixApiError } from "@heurix-site/client";
+import { HeurixClient, HeurixApiError } from "heurix-client";
 
 try {
   await client.search("test", { catalog: "catalogue-inexistant" });

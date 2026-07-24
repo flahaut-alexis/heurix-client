@@ -37,6 +37,11 @@ var HeurixClient = class {
     if (!options.apiKey) {
       throw new Error("HeurixClient : 'apiKey' est requis.");
     }
+    if (typeof window !== "undefined" && options.apiKey.startsWith("hx_") && !options.apiKey.startsWith("hxp_")) {
+      console.warn(
+        "[Heurix] Vous utilisez une cl\xE9 SERVEUR (hx_) c\xF4t\xE9 navigateur. Elle est lisible par vos visiteurs et donne acc\xE8s \xE0 votre facturation. G\xE9n\xE9rez une cl\xE9 publique (hxp_) depuis votre console Heurix."
+      );
+    }
     this.apiKey = options.apiKey;
     this.defaultCatalog = options.catalog;
     this.baseUrl = (options.baseUrl ?? DEFAULT_BASE_URL).replace(/\/+$/, "");

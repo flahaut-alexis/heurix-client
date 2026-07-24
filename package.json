@@ -1,6 +1,6 @@
 {
-  "name": "@heurix/client",
-  "version": "0.1.0",
+  "name": "heurix-client",
+  "version": "0.2.1",
   "description": "Client officiel TypeScript/JavaScript pour l'API Heurix — recherche, Browse & Discovery, indexation, synonymes.",
   "type": "module",
   "main": "dist/index.cjs",
@@ -30,12 +30,9 @@
   ],
   "license": "MIT",
   "homepage": "https://heurix.fr/docs.html",
- "repository": {
+  "repository": {
     "type": "git",
-    "url": "https://github.com/flahaut-alexis/heurix-client.git"
-  },
-  "bugs": {
-    "url": "https://github.com/flahaut-alexis/heurix-client/issues"
+    "url": "git+https://github.com/flahaut-alexis/heurix-client.git"
   },
   "engines": {
     "node": ">=18"
@@ -43,5 +40,9 @@
   "devDependencies": {
     "typescript": "^5.4.0",
     "tsup": "^8.0.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/flahaut-alexis/heurix-client/issues"
+  },
+  "author": "Alexis Flahaut <contact@heurix.fr>"
 }
