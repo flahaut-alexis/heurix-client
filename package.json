@@ -1,0 +1,44 @@
+{
+  "name": "@heurix/client",
+  "version": "0.1.0",
+  "description": "Client officiel TypeScript/JavaScript pour l'API Heurix — recherche, Browse & Discovery, indexation, synonymes.",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --clean",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "heurix",
+    "search",
+    "e-commerce",
+    "catalog",
+    "browse"
+  ],
+  "license": "MIT",
+  "homepage": "https://heurix.fr/docs.html",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/heurix/heurix-client"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "tsup": "^8.0.0"
+  }
+}
