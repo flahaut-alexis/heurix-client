@@ -1,6 +1,6 @@
 {
   "name": "heurix-client",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Client officiel TypeScript/JavaScript pour l'API Heurix — recherche, Browse & Discovery, indexation, synonymes.",
   "type": "module",
   "main": "dist/index.cjs",

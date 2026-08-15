@@ -38,6 +38,18 @@ results.hits.forEach((hit) => {
 });
 ```
 
+## Personnalisation
+
+Si vous transmettez un `visitorId` (généré et fourni automatiquement par `heurix-search.js` avec le Tracker chargé, ou géré par vous-même), les résultats tiennent légèrement compte de l'historique d'achats et de clics de ce visiteur — jamais assez fort pour inverser un vrai écart de pertinence, seulement pour départager une quasi-égalité. Alimente aussi le score d'intention et la segmentation, visibles dans la console.
+
+```ts
+const results = await client.search("vis m8 inox", {
+  visitorId: "v-8f3a...", // 64 caractères max
+});
+```
+
+D'autres options de recherche disponibles : `inStockOnly` (exclut les ruptures de stock), `lang` (filtre par langue), `idsOnly`/`idField` (renvoie uniquement des identifiants, pour les plateformes qui affichent leurs propres fiches produit).
+
 ## Browse & Discovery (pages de catégorie, sans recherche)
 
 ```ts

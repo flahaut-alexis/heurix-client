@@ -66,6 +66,24 @@ interface SearchOptions {
     filters?: string[];
     /** Groupes d'annotations pour lesquels renvoyer un décompte par valeur. */
     facets?: string[];
+    /**
+     * Identifiant de visiteur anonyme (64 caractères max). Alimente le score
+     * d'intention et la segmentation côté console, et re-classe légèrement
+     * les résultats selon l'historique d'achats et de clics de ce visiteur —
+     * jamais assez fort pour inverser un vrai écart de pertinence, seulement
+     * pour départager une quasi-égalité. Transmis automatiquement si vous
+     * utilisez `heurix-search.js` avec le Tracker chargé ; à fournir
+     * vous-même sinon.
+     */
+    visitorId?: string;
+    /** Exclut les produits en rupture de stock (défaut : false). */
+    inStockOnly?: boolean;
+    /** Filtre par langue si vos produits portent un champ `lang` (ex. "fr", "en"). */
+    lang?: string;
+    /** Renvoie uniquement les identifiants ordonnés, pas les fiches produit complètes. */
+    idsOnly?: boolean;
+    /** Champ à renvoyer par `idsOnly`. "id" par défaut ; "platform_id" pour les plateformes qui identifient par un entier interne. */
+    idField?: string;
 }
 interface BrowseHit {
     product: Product;

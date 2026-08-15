@@ -117,6 +117,11 @@ export class HeurixClient {
         offset: options.offset ?? 0,
         filters: options.filters ?? [],
         facets: options.facets ?? [],
+        visitor_id: options.visitorId,
+        in_stock_only: options.inStockOnly,
+        lang: options.lang,
+        ids_only: options.idsOnly,
+        id_field: options.idField,
       },
     });
   }
