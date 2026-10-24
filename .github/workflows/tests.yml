@@ -1,0 +1,34 @@
+# Pourquoi tests.yml et pas CI.yml (23 octobre 2026).
+#
+# Le nom suit ce que le workflow FAIT, pas le depot ou il vit. CI.yml, sur
+# heurix-site, publie les Pages EN PLUS de tester. tests.yml, sur
+# heurix-engine et le connecteur, ne teste que. Celui-ci ne testera que : la
+# publication npm reste un geste pris a la main, jamais depuis ce fichier --
+# aucun `npm version`, aucun `npm publish`, aucun tag ici.
+#
+# Premier workflow de ce depot : zero test, zero CI dans toute son histoire
+# avant ce lot (balayage du 23 octobre 2026, branche balayage-2026-10-23).
+
+name: Tests client
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    name: vitest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm test
